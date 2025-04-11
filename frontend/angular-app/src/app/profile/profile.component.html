@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div class="profile-container">
+  <div class="profile-content">
+    <h2 class="profile-title">My Profile</h2>
+    
+    <div class="profile-card" *ngIf="user">
+      <div class="profile-field">
+        <label class="field-label">Full Name</label>
+        <div class="field-value">{{ user.name }}</div>
+      </div>
+      
+      <div class="profile-field">
+        <label class="field-label">Email Address</label>
+        <div class="field-value">{{ user.email }}</div>
+      </div>
+      
+      <div class="profile-field">
+        <label class="field-label">Password</label>
+        <div class="password-input-container">
+          <input 
+            class="password-input"
+            [type]="passwordFieldType" 
+            [value]="user.password" 
+            [placeholder]="passwordPlaceholder"
+            readonly
+          >
+          <button 
+            type="button" 
+            class="toggle-password-btn" 
+            (click)="togglePasswordVisibility()"
+            [title]="showPassword ? 'Hide password' : 'Show password'"
+          >
+            <span class="material-icons-outlined">
+              {{ showPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <button class="edit-profile-btn">Edit Profile</button>
+        <button class="change-password-btn">Change Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

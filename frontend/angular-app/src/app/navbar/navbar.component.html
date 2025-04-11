@@ -1,0 +1,71 @@
+<nav class="navbar">
+  <div class="logo">
+    <a routerLink="/courses">
+      <span class="brand">Home</span>
+    </a>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container" *ngIf="isLoggedIn">
+    <input 
+      type="text" 
+      placeholder="Search courses..." 
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="search()"
+    >
+    <button (click)="search()">
+      <i class="search-icon">🔍</i>
+    </button>
+  </div>
+
+  <button class="menu-toggle" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  <ul class="nav-links" [class.active]="isMenuOpen">
+    <li><a routerLink="/courses" routerLinkActive="active">Courses</a></li>
+    
+    <li *ngIf="isLoggedIn">
+      <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <a (click)="logout()">Logout</a>
+    </li>
+
+    <li *ngIf="!isLoggedIn">
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    </li>
+    <li *ngIf="!isLoggedIn">
+      <a routerLink="/register" routerLinkActive="active">Register</a>
+    </li>
+  </ul>
+</nav>
+<!-- <nav class="navbar">
+  <div class="logo">
+    <a routerLink="/courses">
+      <span class="brand">Home</span>
+    </a>
+  </div>
+
+  <button class="menu-toggle" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  <ul class="nav-links" [class.active]="isMenuOpen">
+    <li><a routerLink="/courses" routerLinkActive="active">Courses</a></li>
+    
+    <li *ngIf="isLoggedIn">
+      <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <a (click)="logout()">Logout</a>
+    </li>
+
+    <li *ngIf="!isLoggedIn">
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    </li>
+    <li *ngIf="!isLoggedIn">
+      <a routerLink="/register" routerLinkActive="active">Register</a>
+    </li>
+  </ul>
+</nav> -->

@@ -1,0 +1,115 @@
+/* admin-login.component.css */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f9fa;
+  padding: 20px;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+               'Helvetica Neue', Arial, sans-serif;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.auth-title {
+  color: #1c1d1f;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1c1d1f;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d7dc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background-color: #f7f9fa;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #5624d0;
+  box-shadow: 0 0 0 2px rgba(98, 0, 238, 0.1);
+  background-color: white;
+}
+
+.form-group input::placeholder {
+  color: #6a6f73;
+  opacity: 0.7;
+}
+
+.error-message {
+  color: #d13438;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  display: block;
+}
+
+.auth-button {
+  width: 100%;
+  background-color: #a435f0;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.auth-button:hover {
+  background-color: #8710d8;
+}
+
+.auth-button:disabled {
+  background-color: #e0e0e0;
+  color: #6a6f73;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px;
+    box-shadow: none;
+    border: 1px solid #d1d7dc;
+  }
+  
+  .auth-title {
+    font-size: 1.3rem;
+  }
+  
+  .form-group input {
+    padding: 12px;
+  }
+  
+  .auth-button {
+    padding: 12px;
+  }
+}

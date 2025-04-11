@@ -1,0 +1,18 @@
+<!-- courses.component.html -->
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="main">
+  <h2>Available Courses</h2>
+  <div class="course-grid">
+    @for (course of courses; track course._id) {
+      <div class="course-card" (click)="navigateToCourseVideo(course)">
+        <h3>{{ course.title }}</h3>
+        <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+        <p><strong>Duration:</strong> {{ course.duration }}</p>
+        <!-- <p><strong>Price:</strong> {{ course.price }} rs</p> -->
+        <!-- <p>{{ course.description }}</p> -->
+      </div>
+    }
+  </div>
+</div>
+<app-footer></app-footer>

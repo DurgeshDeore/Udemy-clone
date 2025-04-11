@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="main">
+  <form (ngSubmit)="onRegister()">
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password" required>
+
+    <button type="submit" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Register</span>
+      <span *ngIf="isLoading">Registering...</span>
+    </button>
+    <div class="auth-footer">
+      <p>Alreay exist? <a routerLink="/login" class="register-link">Login here</a></p>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

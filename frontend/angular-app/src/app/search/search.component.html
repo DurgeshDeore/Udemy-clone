@@ -1,0 +1,36 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="main">
+  <div class="search-results-container">
+    <h1 class="search-results-title">Search Results for "{{ searchQuery }}"</h1>
+    
+    <div *ngIf="isLoading" class="loading-indicator">
+      <div class="spinner"></div>
+      <p>Searching for courses...</p>
+    </div>
+    
+    <div *ngIf="error" class="error-message">
+      <p>{{ error }}</p>
+      <button (click)="performSearch()">Try Again</button>
+    </div>
+    
+    <div *ngIf="noResults && !isLoading" class="no-results">
+      <p>No courses found matching "{{ searchQuery }}"</p>
+      <p>Try different search terms or browse our <a routerLink="/courses">course catalog</a>.</p>
+    </div>
+    
+    <div *ngIf="searchResults.length > 0" class="results-grid">
+      <div class="course-card" *ngFor="let course of searchResults">
+        <h3 class="course-title">
+          <a [routerLink]="['/courses', course.id]">{{ course.title }}</a>
+        </h3>
+        <p class="course-description">{{ course.description | truncate:150 }}</p>
+        <div class="course-meta">
+          <span class="instructor">Instructor: {{ course.instructor }}</span>
+          <span class="duration">Duration: {{ course.duration }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,68 @@
+<div class="dashboard-container">
+  <div class="admin-nav">
+    <h2>Admin Dashboard</h2>
+    <nav>
+      <ul>
+        <li><a routerLink="/admin/dashboard" routerLinkActive="active">Add Course</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/admin/users" routerLinkActive="active">User Management</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="content">
+    <h3>Add a New Course</h3>
+  
+    <form #courseForm="ngForm" (ngSubmit)="addCourse()">
+      <div class="form-group">
+        <label>Title</label>
+        <input [(ngModel)]="course.title" name="title" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Description</label>
+        <textarea [(ngModel)]="course.description" name="description" required></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label>Original Price (₹)</label>
+        <input type="number" [(ngModel)]="course.dprice" name="dprice" 
+               min="0" step="0.01" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Discounted Price (₹)</label>
+        <input type="number" [(ngModel)]="course.price" name="price" 
+               min="0" step="0.01" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Instructor</label>
+        <input [(ngModel)]="course.instructor" name="instructor" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Duration</label>
+        <input [(ngModel)]="course.duration" name="duration" required />
+      </div>
+
+      <div class="form-group">
+        <label>YouTube Video URL</label>
+        <input 
+          [(ngModel)]="course.videoLink" 
+          name="videoLink" 
+          placeholder="https://youtu.be/..." 
+          required
+          (blur)="validateYouTubeUrl(course.videoLink)" />
+        <small *ngIf="urlError" class="error">{{ urlError }}</small>
+      </div>
+  
+      <button type="submit" [disabled]="!courseForm.form.valid || isLoading">
+        {{ isLoading ? 'Adding...' : 'Add Course' }}
+      </button>
+    </form>
+  
+    <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+  <router-outlet></router-outlet>
+</div>
