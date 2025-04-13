@@ -176,7 +176,6 @@ export class CourseVideoComponent implements OnInit {
   }
 
   private convertToEmbedUrl(url: string): string | null {
-    // Handle various YouTube URL formats
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
     
@@ -187,7 +186,6 @@ export class CourseVideoComponent implements OnInit {
       return null;
     }
     
-    // Return embed URL with modest branding and no suggested videos
     return `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`;
   }
 }

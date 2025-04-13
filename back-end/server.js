@@ -37,7 +37,6 @@ app.use(
 mongoose.connect("mongodb://127.0.0.1:27017/classroomDB")
   .then(() => {
     console.log("MongoDB connected");
-    // initializeDatabase(); // Initialize with sample data
   })
   .catch(err => console.log(err));
 
@@ -57,38 +56,12 @@ const isAdmin = (req, res, next) => {
   res.status(403).json({ message: "Admin access required" });
 };
 
-// User Routes
-// app.post("/register", async (req, res) => {
-//   try {
-//     const { name, email, password } = req.body;
-//     const existingUser = await User.findOne({ email });
-//     if (existingUser) return res.status(400).json({ message: "Email already exists" });
-
-//     const newUser = new User({ name, email, password });
-//     await newUser.save();
-    
-//     req.session.user = { 
-//       id: newUser._id, 
-//       email: newUser.email, 
-//       name: newUser.name,
-//       role: 'user'
-//     };
-    
-//     res.status(201).json({ 
-//       message: "User registered successfully",
-//       user: { name: newUser.name, email: newUser.email }
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: "Error registering user", error });
-//   }
-// });
 app.post("/register", async (req, res) => {
   try {
-    console.log('Registration attempt:', req.body); // Add logging
+    console.log('Registration attempt:', req.body); 
     
     const { name, email, password } = req.body;
     
-    // Validate input
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -108,13 +81,13 @@ app.post("/register", async (req, res) => {
       role: 'user'
     };
     
-    console.log('User registered:', newUser); // Add logging
+    console.log('User registered:', newUser); 
     res.status(201).json({ 
       message: "User registered successfully",
       user: { name: newUser.name, email: newUser.email }
     });
   } catch (error) {
-    console.error('Registration error:', error); // Add logging
+    console.error('Registration error:', error); 
     res.status(500).json({ 
       message: "Error registering user", 
       error: error.message 
@@ -190,7 +163,6 @@ app.post('/courses', isAuthenticated, isAdmin, async (req, res) => {
   try {
     const { title, description, dprice, price, instructor, duration, videoLink } = req.body;
     
-    // Validate required fields
     if (!title || !description || !dprice || !price || !instructor || !duration || !videoLink) {
       return res.status(400).json({ error: "All fields including videoLink are required" });
     }
@@ -214,45 +186,6 @@ app.post('/courses', isAuthenticated, isAdmin, async (req, res) => {
     });
   }
 });
-
-// Initialize database with sample courses
-// async function initializeDatabase() {
-//   const count = await Course.countDocuments();
-//   if (count === 0) {
-//     await Course.insertMany([
-//       {
-//         title: "Angular Fundamentals",
-//         description: "Learn Angular from scratch with this comprehensive course",
-//         dprice: 99.99,
-//         price: 79.99,
-//         instructor: "John Doe",
-//         duration: "6 weeks",
-//         videoLink: "/assets/videos/angular-fundamentals.mp4"
-//       },
-//       {
-//         title: "Node.js Masterclass",
-//         description: "Build scalable backend applications with Node.js",
-//         dprice: 129.99,
-//         price: 99.99,
-//         instructor: "Jane Smith",
-//         duration: "8 weeks",
-//         videoLink: "/assets/videos/nodejs-masterclass.mp4"
-//       },
-//       {
-//         title: "MongoDB for Developers",
-//         description: "Master NoSQL database concepts with MongoDB",
-//         dprice: 89.99,
-//         price: 69.99,
-//         instructor: "Mike Johnson",
-//         duration: "4 weeks",
-//         videoLink: "/assets/videos/mongodb-for-developers.mp4"
-//       }
-//     ]);
-//     console.log("Sample courses with video links added to database");
-//   }
-// }
-
-// Start Server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
 

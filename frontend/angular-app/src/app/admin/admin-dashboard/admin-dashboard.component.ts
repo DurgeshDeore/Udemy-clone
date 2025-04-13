@@ -37,8 +37,6 @@ export class AdminDashboardComponent {
     this.urlError = isValid ? null : 'Please enter a valid YouTube URL';
     return isValid;
   }
-
-
   constructor(
     private http: HttpClient,
     private authService: AuthService,
